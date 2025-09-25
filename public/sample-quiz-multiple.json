@@ -1,0 +1,62 @@
+{
+  "title": "研修理解度チェック - 複数選択版",
+  "description": "単一選択、複数選択、記述式の問題を含むサンプルクイズ",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "choice",
+      "question": "プロジェクト管理において最も重要な要素は？",
+      "options": [
+        "予算管理",
+        "スケジュール管理",
+        "品質管理",
+        "ステークホルダー管理"
+      ],
+      "correct": 3
+    },
+    {
+      "id": "q2",
+      "type": "multiple",
+      "question": "効果的なチームワークに必要な要素を全て選択してください",
+      "options": [
+        "明確な目標設定",
+        "相互の信頼関係",
+        "適切なコミュニケーション",
+        "個人の競争意識"
+      ],
+      "correct": [0, 1, 2]
+    },
+    {
+      "id": "q3",
+      "type": "text",
+      "question": "5W1Hを全て記述してください（カンマ区切り）",
+      "correct": "What, When, Where, Who, Why, How"
+    },
+    {
+      "id": "q4",
+      "type": "multiple",
+      "question": "アジャイル開発の特徴として正しいものを全て選択",
+      "options": [
+        "短期間での反復的な開発",
+        "顧客との継続的な協働",
+        "変化への柔軟な対応",
+        "詳細な事前計画の重視",
+        "ドキュメントより動くソフトウェアを重視"
+      ],
+      "correct": [0, 1, 2, 4]
+    },
+    {
+      "id": "q5",
+      "type": "choice",
+      "question": "SMART目標のTは何を表す？",
+      "options": [
+        "Testable（テスト可能）",
+        "Time-bound（期限がある）",
+        "Tactical（戦術的）",
+        "Technical（技術的）"
+      ],
+      "correct": 1
+    }
+  ],
+  "timeLimit": 300
+}
