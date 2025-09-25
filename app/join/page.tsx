@@ -136,7 +136,7 @@ export default function JoinPage() {
                   onChange={handleCodeChange}
                   placeholder="123456"
                   maxLength={6}
-                  className="w-full px-4 py-3 text-2xl text-center font-mono border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full px-4 py-3 text-2xl text-center font-mono bg-white text-gray-900 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent placeholder-gray-400"
                   autoFocus
                 />
               </div>
@@ -151,7 +151,7 @@ export default function JoinPage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="田中太郎"
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full px-4 py-3 bg-white text-gray-900 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent placeholder-gray-400"
                 />
               </div>
 

@@ -1,0 +1,82 @@
+@media print {
+  body {
+    margin: 0;
+    padding: 20px;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  /* 背景色を印刷用に調整 */
+  .bg-gradient-to-br {
+    background: white !important;
+  }
+
+  /* ボタンを非表示 */
+  button {
+    display: none !important;
+  }
+
+  /* リンクを非表示 */
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* ページブレークの制御 */
+  .page-break-before {
+    page-break-before: always;
+  }
+
+  .page-break-avoid {
+    page-break-inside: avoid;
+  }
+
+  /* 印刷時の色調整 */
+  .text-purple-600 {
+    color: #6B46C1 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .bg-green-100 {
+    background-color: #D1FAE5 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .bg-red-100 {
+    background-color: #FEE2E2 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .bg-green-50 {
+    background-color: #F0FDF4 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .bg-red-50 {
+    background-color: #FEF2F2 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .border-green-500 {
+    border-color: #10B981 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .border-red-500 {
+    border-color: #EF4444 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

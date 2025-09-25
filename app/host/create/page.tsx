@@ -328,7 +328,7 @@ export default function CreateQuizPage() {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="例：営業研修Day1 - 基礎知識確認"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 bg-white text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
                 />
               </div>
               <div>
@@ -339,7 +339,7 @@ export default function CreateQuizPage() {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="例：営業活動における基本的な知識と考え方を確認します"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 bg-white text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
                   rows={2}
                 />
               </div>
@@ -353,7 +353,7 @@ export default function CreateQuizPage() {
                   onChange={(e) => setTimeLimit(Number(e.target.value))}
                   min={60}
                   max={3600}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 bg-white text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -428,7 +428,7 @@ export default function CreateQuizPage() {
                         value={question.correct as string}
                         onChange={(e) => updateQuestion(qIndex, { correct: e.target.value })}
                         placeholder="正解例を入力"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
+                        className="w-full px-4 py-2 bg-white text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300 placeholder-gray-400"
                       />
                     </div>
                   ) : (
@@ -472,7 +472,7 @@ export default function CreateQuizPage() {
                             value={option}
                             onChange={(e) => updateOption(qIndex, oIndex, e.target.value)}
                             placeholder={`選択肢 ${String.fromCharCode(65 + oIndex)}`}
-                            className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="flex-1 px-4 py-2 bg-white text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
                           />
                           {question.options!.length > 2 && (
                             <button
@@ -634,7 +634,7 @@ export default function CreateQuizPage() {
                 value={jsonInput}
                 onChange={(e) => setJsonInput(e.target.value)}
                 placeholder="JSONをここにペーストしてください..."
-                className="w-full h-80 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
+                className="w-full h-80 px-4 py-3 bg-white text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm placeholder-gray-400"
               />
               
               {jsonError && (

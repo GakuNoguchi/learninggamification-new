@@ -1,79 +1,56 @@
 'use client';
 
 import Link from 'next/link';
-import { Users, BookOpen, Trophy } from 'lucide-react';
+import { Rocket, FileText } from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold text-gray-900 mb-4">
-              リアルタイム競争型クイズシステム
-            </h1>
-            <p className="text-xl text-gray-600">
-              楽しく競い合いながら理解度をチェック
-            </p>
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
+      <div className="container mx-auto px-4 py-20">
+        <div className="max-w-3xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <div className="mb-8">
+              <h1 className="text-4xl font-bold text-slate-800 mb-3">
+                リアルタイム参加型「進捗理解度テスト」
+              </h1>
+              <p className="text-sm text-slate-500 uppercase tracking-wider">
+                Produced by Teleport inc.
+              </p>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <Link href="/host">
-              <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer">
-                <div className="flex items-center mb-4">
-                  <BookOpen className="w-10 h-10 text-blue-500 mr-3" />
-                  <h2 className="text-2xl font-bold text-gray-900">講師として始める</h2>
-                </div>
-                <p className="text-gray-600 mb-4">
-                  クイズを作成してセッションを開始します。参加者の進捗をリアルタイムで確認できます。
-                </p>
-                <div className="flex items-center text-blue-500 font-medium">
-                  セッションを作成 →
-                </div>
+          {/* Main Card */}
+          <div className="bg-white rounded-3xl shadow-xl p-12 mb-8">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mb-6">
+                <Rocket className="w-10 h-10 text-white" />
               </div>
-            </Link>
+              
+              <h2 className="text-2xl font-bold text-slate-800 mb-4">
+                試験に参加する
+              </h2>
+              
+              <p className="text-slate-600 mb-8 leading-relaxed">
+                主催者から共有された<br />
+                <span className="font-semibold text-slate-700">6桁のアクセスコード</span>を入力して<br />
+                理解度テストに参加してください
+              </p>
 
-            <Link href="/join">
-              <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer">
-                <div className="flex items-center mb-4">
-                  <Users className="w-10 h-10 text-green-500 mr-3" />
-                  <h2 className="text-2xl font-bold text-gray-900">参加者として参加</h2>
-                </div>
-                <p className="text-gray-600 mb-4">
-                  6桁のアクセスコードを入力してクイズに参加します。他の参加者と競い合いましょう。
-                </p>
-                <div className="flex items-center text-green-500 font-medium">
-                  クイズに参加 →
-                </div>
-              </div>
-            </Link>
+              <Link href="/join">
+                <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium px-10 py-4 rounded-full hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 flex items-center mx-auto">
+                  <FileText className="w-5 h-5 mr-2" />
+                  試験会場へ入る
+                </button>
+              </Link>
+            </div>
           </div>
 
-          <div className="mt-12 bg-white rounded-2xl shadow-lg p-8">
-            <div className="flex items-center mb-4">
-              <Trophy className="w-8 h-8 text-yellow-500 mr-3" />
-              <h3 className="text-xl font-bold text-gray-900">主な機能</h3>
-            </div>
-            <div className="grid md:grid-cols-3 gap-4">
-              <div>
-                <h4 className="font-semibold text-gray-800 mb-2">🎮 ゲーミフィケーション</h4>
-                <p className="text-sm text-gray-600">
-                  リアルタイムランキングとプログレスバーで競争心を刺激
-                </p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-800 mb-2">⚡ リアルタイム同期</h4>
-                <p className="text-sm text-gray-600">
-                  全員の進捗が即座に反映される双方向通信
-                </p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-800 mb-2">📊 即座のフィードバック</h4>
-                <p className="text-sm text-gray-600">
-                  結果と分析がすぐに確認できる詳細レポート
-                </p>
-              </div>
-            </div>
+          {/* Footer */}
+          <div className="text-center">
+            <Link href="/host" className="text-xs text-slate-400 hover:text-slate-500 transition-colors">
+              管理者ログイン
+            </Link>
           </div>
         </div>
       </div>

@@ -21,6 +21,7 @@ export default function QuizPage() {
   const [timeLeft, setTimeLeft] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showWaiting, setShowWaiting] = useState(true);
+  const [isTimerInitialized, setIsTimerInitialized] = useState(false);
 
   // 参加者情報の取得
   useEffect(() => {
@@ -42,8 +43,10 @@ export default function QuizPage() {
         // セッションが開始されたら待機画面を非表示
         if (data.status === 'active') {
           setShowWaiting(false);
-          if (data.quizData.timeLimit) {
+          // タイマーを初回のみセット
+          if (data.quizData.timeLimit && !isTimerInitialized) {
             setTimeLeft(data.quizData.timeLimit);
+            setIsTimerInitialized(true);
           }
         }
         
@@ -73,7 +76,16 @@ export default function QuizPage() {
       const data = snapshot.val();
       if (data) {
         const allParticipants = Object.values(data) as Participant[];
-        const others = allParticipants.filter(p => p.id !== participantId);
+        const others = allParticipants
+          .filter(p => p.id !== participantId)
+          .sort((a, b) => {
+            // 進捗順でソート（問題番号が多い順）
+            if (b.currentQuestion !== a.currentQuestion) {
+              return b.currentQuestion - a.currentQuestion;
+            }
+            // 同じ問題数ならスコア順
+            return (b.score || 0) - (a.score || 0);
+          });
         setOtherParticipants(others);
       }
     });
@@ -83,7 +95,7 @@ export default function QuizPage() {
       unsubscribeMyParticipant();
       unsubscribeParticipants();
     };
-  }, [sessionId, router, session]);
+  }, [sessionId, router, isTimerInitialized]);
 
   // タイマー処理
   useEffect(() => {
@@ -153,9 +165,7 @@ export default function QuizPage() {
       } else {
         // 次の問題へ
         setCurrentQuestion(session.quizData.questions[nextQuestionIndex]);
-        if (session.quizData.timeLimit) {
-          setTimeLeft(session.quizData.timeLimit);
-        }
+        // タイマーは継続（リセットしない）
       }
     } catch (error) {
       console.error(error);
@@ -198,7 +208,9 @@ export default function QuizPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100">
       <div className="container mx-auto px-4 py-8">
-        <div className="max-w-2xl mx-auto">
+        <div className="flex gap-6">
+          {/* メインコンテンツ */}
+          <div className="flex-1 max-w-2xl">
           {/* ヘッダー */}
           <div className="bg-white rounded-xl shadow-lg p-4 mb-6">
             <div className="flex items-center justify-between">
@@ -257,7 +269,7 @@ export default function QuizPage() {
                   value={selectedAnswer}
                   onChange={(e) => setSelectedAnswer(e.target.value)}
                   placeholder="回答を入力してください"
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full px-4 py-3 bg-white text-gray-900 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent placeholder-gray-400"
                   autoFocus
                 />
               </div>
@@ -279,30 +291,57 @@ export default function QuizPage() {
             </button>
           </div>
 
-          {/* 他の参加者の進捗 */}
-          {otherParticipants.length > 0 && (
-            <div className="bg-white rounded-xl shadow-lg p-6">
+          </div>
+
+          {/* 右側サイドバー - 参加者リスト */}
+          <div className="w-64 hidden lg:block">
+            <div className="bg-white/80 rounded-lg shadow-sm p-4 sticky top-8">
               <div className="flex items-center mb-4">
-                <Users className="w-5 h-5 text-gray-500 mr-2" />
-                <h3 className="text-lg font-semibold text-gray-900">
-                  みんなの進捗
+                <Users className="w-4 h-4 text-gray-500 mr-2" />
+                <h3 className="text-sm font-medium text-gray-700">
+                  参加者の進捗
                 </h3>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {otherParticipants.map((participant) => (
-                  <div
-                    key={participant.id}
-                    className="bg-gray-100 px-3 py-1 rounded-full text-sm"
-                  >
-                    <span className="font-medium">{participant.name}</span>
-                    <span className="text-gray-600 ml-1">
-                      ({participant.currentQuestion + 1}問目)
-                    </span>
+              
+              {/* 自分の進捗 */}
+              {currentParticipant && (
+                <div className="bg-green-50 border border-green-300 rounded p-3 mb-3">
+                  <div className="flex items-center justify-between">
+                    <div className="text-sm font-medium text-gray-900">
+                      {currentParticipant.name}
+                      <span className="text-xs text-green-600 ml-1">(あなた)</span>
+                    </div>
+                    <div className="text-sm font-semibold text-gray-700">
+                      {currentParticipant.currentQuestion + 1}問目
+                    </div>
                   </div>
-                ))}
+                </div>
+              )}
+
+              {/* 他の参加者リスト */}
+              <div className="space-y-2">
+                {otherParticipants.length > 0 ? (
+                  otherParticipants.map((participant) => (
+                    <div
+                      key={participant.id}
+                      className="flex items-center justify-between py-2 px-3 rounded hover:bg-gray-50 transition-colors"
+                    >
+                      <div className="text-sm text-gray-700">
+                        {participant.name}
+                      </div>
+                      <div className="text-sm font-medium text-gray-600">
+                        {participant.currentQuestion + 1}問目
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="text-center py-4 text-sm text-gray-400">
+                    他の参加者を待っています
+                  </div>
+                )}
               </div>
             </div>
-          )}
+          </div>
         </div>
       </div>
     </div>
