@@ -5,6 +5,7 @@ export interface Question {
   options?: string[];
   correct: string | number | number[];
   timeLimit?: number;
+  explanation?: string;
 }
 
 export interface QuizData {

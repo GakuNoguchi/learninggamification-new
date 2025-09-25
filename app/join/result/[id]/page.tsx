@@ -146,7 +146,7 @@ export default function ParticipantResultPage() {
                   </div>
                   
                   <div style="margin-left: 20px;">
-                    ${question.options.map((option, optionIndex) => {
+                    ${question.options?.map((option, optionIndex) => {
                       const isUserAnswer = userAnswer === optionIndex;
                       const isCorrectAnswer = optionIndex === (question.correct as number);
                       
@@ -325,7 +325,7 @@ export default function ParticipantResultPage() {
                     
                     {/* 選択肢リスト */}
                     <div className="space-y-3">
-                      {question.options.map((option, optionIndex) => {
+                      {question.options?.map((option, optionIndex) => {
                         const isUserAnswer = userAnswer === optionIndex;
                         const isCorrectAnswer = optionIndex === (question.correct as number);
                         
@@ -384,10 +384,10 @@ export default function ParticipantResultPage() {
                       <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
                         <div className="text-sm space-y-1">
                           <p className="font-semibold text-amber-900">
-                            📝 あなたの回答: {String.fromCharCode(65 + userAnswer)}. {question.options[userAnswer]}
+                            📝 あなたの回答: {String.fromCharCode(65 + userAnswer)}. {question.options?.[userAnswer]}
                           </p>
                           <p className="font-semibold text-green-800">
-                            ✅ 正解: {String.fromCharCode(65 + (question.correct as number))}. {question.options[question.correct as number]}
+                            ✅ 正解: {String.fromCharCode(65 + (question.correct as number))}. {question.options?.[question.correct as number]}
                           </p>
                         </div>
                       </div>
